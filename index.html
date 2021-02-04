@@ -105,7 +105,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/04/portainer%E6%90%AD%E5%BB%BA/" data-id="ckkqnz3nt00063wqk1r4q7343" data-title="portainer搭建" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/02/04/portainer%E6%90%AD%E5%BB%BA/" data-id="ckkqo8ued00065cqkb4zx0xy2" data-title="portainer搭建" class="article-share-link">Share</a>
       
       
       
@@ -370,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/04/py%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckkqnz3nv00083wqk8vaxg42t" data-title="py操作MongoDB" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/02/04/py%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckkqo8ueg000a5cqk65qr9ild" data-title="py操作MongoDB" class="article-share-link">Share</a>
       
       
       
@@ -755,7 +755,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/04/Mongo%E4%B8%8EMysql%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" data-id="ckkqnz3nq00033wqk5a479sy4" data-title="Mongo与Mysql的一些事" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/02/04/Mongo%E4%B8%8EMysql%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" data-id="ckkqo8uea00035cqk4sx32zm2" data-title="Mongo与Mysql的一些事" class="article-share-link">Share</a>
       
       
       
@@ -810,12 +810,204 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/04/Flex%E7%9A%84%E5%B8%83%E5%B1%80%E4%BD%BF%E7%94%A8/" data-id="ckkqnz3nk00013wqk77fh6alr" data-title="Flex的布局使用" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/02/04/Flex%E7%9A%84%E5%B8%83%E5%B1%80%E4%BD%BF%E7%94%A8/" data-id="ckkqo8ue700015cqk6fa80r72" data-title="Flex的布局使用" class="article-share-link">Share</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flex/" rel="tag">Flex</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
 
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ratel的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/04/ratel%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2021-02-04T09:18:39.000Z" itemprop="datePublished">2021-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/02/04/ratel%E7%9A%84%E4%BD%BF%E7%94%A8/">ratel的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="使用ratel抓包-抓取例子：麦田app"><a href="#使用ratel抓包-抓取例子：麦田app" class="headerlink" title="使用ratel抓包,抓取例子：麦田app"></a>使用ratel抓包,抓取例子：麦田app</h4><ul>
+<li>下载<a target="_blank" rel="noopener" href="https://ratel.virjar.com/#/">ratel Manager</a>,与xpose，太极类似,功能比较强大,可以自定义插件,做个人定制</li>
+<li>上传app到<a target="_blank" rel="noopener" href="https://ratel.virjar.com/#/">ratel Manager</a>,感染之后下载到手机</li>
+<li>使用ratel Manager扫描到以感染app</li>
+<li>下载插件demo:命令如下</li>
+<li><code>git clone --recursive git@git.virjar.com:ratel/ratel-demo.git</code></li>
+<li>使用命令直接生成对应模板 <code>./template.sh  -m crack-wechat -a path </code> -m表示要创建的插件名称,-a 对应的是已破解感染好的apk的路径</li>
+<li>生成好之后就可以编写自定义功能了</li>
+<li>抓取所有http请求,分析http的所需要的参数与参数值</li>
+<li>根据分析结果自行封装所需参数与参数值</li>
+</ul>
+<h4 id="插件实例"><a href="#插件实例" class="headerlink" title="插件实例"></a>插件实例</h4><ul>
+<li>编写抓取所有app请求到log,下载ratel-demo,通过直接在HookEntry类的handleLoadPackage方法添加代码块,通过Android studio启动,使用adb监听手机http日志,启动之后:<ol>
+<li><code>adb logcat -s MAITIAN_HOOK  </code>这个命令是监听请求日志</li>
+<li><code>adb pull /sdcard/ratel_white_dir/com.jkrm.maitian/socketMonitor</code> 这个命令是下载存储的日志,com.jkrm.maitian是app的包名,当不确定是可以使用adb shell,然后cd到ratel_white_dir中看所有的包<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">private static final String TAG &#x3D; &quot;MAITIAN_HOOK&quot;;</span><br><span class="line">public void handleLoadPackage(final RC_LoadPackage.LoadPackageParam lpparam) &#123;</span><br><span class="line">     SocketMonitor.setPacketEventObserver(new FileLogEventObserver(new File(RatelToolKit.whiteSdcardDirPath,&quot;socketMonitor&quot;)));</span><br><span class="line">     Log.i(TAG, &quot;hook start......&quot;);</span><br><span class="line">     RposedBridge.hookAllConstructors(URL.class, new RC_MethodHook() &#123;</span><br><span class="line">         @Override</span><br><span class="line">         protected void afterHookedMethod(MethodHookParam param) throws Throwable &#123;</span><br><span class="line">             Log.i(TAG, &quot;access url: &quot;+ param.thisObject);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;);</span><br><span class="line">     Log.i(TAG, &quot;hook end&quot;);</span><br><span class="line"> &#125;    </span><br></pre></td></tr></table></figure>
+<h4 id="http-源码分析"><a href="#http-源码分析" class="headerlink" title="http/源码分析"></a>http/源码分析</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;service&#x2F;houseSnd?memberId&#x3D;&amp;memberEmobName&#x3D;&amp;touristId&#x3D;&amp;touristEmobName&#x3D;&amp;pushmsg&#x3D;1&amp;PG&#x3D;1&amp;PS&#x3D;20&amp;isScore&#x3D;0&amp;X&#x3D;113.959602&amp;Y&#x3D;22.547543&amp;isAnalysis&#x3D;1&amp;appid&#x3D;aadc9abe17f54007b5cca7a2513cb8b1&amp;channelId&#x3D;maitianweb&amp;deviceId&#x3D;f9c4fb060aafd777&amp;model&#x3D;MI+8&amp;platform&#x3D;android&amp;systemVersion&#x3D;10&amp;versionCode&#x3D;55&amp;versionName&#x3D;3.2.2 HTTP&#x2F;1.1</span><br><span class="line">Content-Length: 0</span><br><span class="line">Host: app.maitian.cn</span><br><span class="line">Authorization: Digest username&#x3D;aos384e9f87,cnonce&#x3D;1592823972112,response&#x3D;77d02c6589082d5afd4329ddbca2d70d</span><br><span class="line">nh_citycode: </span><br><span class="line">nh_userid: </span><br><span class="line">User-Agent: Android</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Accept-Encoding: gzip,deflate,sdch</span><br><span class="line">nh_authorization: </span><br><span class="line">token: 0befe3865bde6ba7bf0a83e90fb2ae12</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>分析每个headers的组成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public static void initHttpClient(AsyncHttpClient asyncHttpClient) &#123;</span><br><span class="line">     asyncHttpClient.setTimeout(BaseImageDownloader.DEFAULT_HTTP_READ_TIMEOUT);</span><br><span class="line">     asyncHttpClient.setCookieStore(new BasicCookieStore());</span><br><span class="line">     asyncHttpClient.addHeader(&quot;token&quot;, MD5.md5(&quot;fda429742d3747f2af42d5d35fb83edd&quot;));</span><br><span class="line">     asyncHttpClient.addHeader(&quot;User-Agent&quot;, &quot;Android&quot;);</span><br><span class="line">     asyncHttpClient.addHeader(&quot;Connection&quot;, HTTP.CONN_KEEP_ALIVE);</span><br><span class="line">     asyncHttpClient.addHeader(AsyncHttpClient.HEADER_ACCEPT_ENCODING, &quot;gzip,deflate,sdch&quot;);</span><br><span class="line">     if (!Constants.BROKER_LOGIN.equals(MyPerference.getWhoLogin()) || Constants.BJ_CODE.equals(MyPerference.getBrokerCity())) &#123;</span><br><span class="line">         asyncHttpClient.addHeader(Constants.HEADER_NH_CITYCODE, &quot;&quot;);</span><br><span class="line">         asyncHttpClient.addHeader(Constants.HEADER_NH_USERID, &quot;&quot;);</span><br><span class="line">         asyncHttpClient.addHeader(Constants.HEADER_NH_AUTHORIZATION, &quot;&quot;);</span><br><span class="line">         return;</span><br><span class="line">     &#125;</span><br><span class="line">     String brokerCity &#x3D; MyPerference.getBrokerCity();</span><br><span class="line">     if (Constants.FZ_CODE.equals(brokerCity)) &#123;</span><br><span class="line">         asyncHttpClient.addHeader(Constants.HEADER_NH_CITYCODE, Constants.FZ_CODE_VALUE);</span><br><span class="line">     &#125; else if (Constants.XM_CODE.equals(brokerCity)) &#123;</span><br><span class="line">         asyncHttpClient.addHeader(Constants.HEADER_NH_CITYCODE, Constants.XM_CODE_VALUE);</span><br><span class="line">     &#125; else &#123;</span><br><span class="line">         asyncHttpClient.addHeader(Constants.HEADER_NH_CITYCODE, &quot;&quot;);</span><br><span class="line">     &#125;</span><br><span class="line">     asyncHttpClient.addHeader(Constants.HEADER_NH_USERID, MyPerference.getUserId());</span><br><span class="line">     asyncHttpClient.addHeader(Constants.HEADER_NH_AUTHORIZATION, getNewAuthorization(MyPerference.getUserId(), MyPerference.getPassWord()));</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>可以很清楚,直观的看到http初始化,token是写死的,通过MD5加密fda429742d3747f2af42d5d35fb83edd得到token的值,Connection的值是Keep-Alive…<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">token: md5(fda429742d3747f2af42d5d35fb83edd)</span><br><span class="line">User-Agent: Android</span><br><span class="line">Connection:Keep-Alive</span><br><span class="line">Accept-Encoding:gzip,deflate,sdch</span><br><span class="line">nh_citycode:&#39;&#39; # 如果是福州 为3  厦门为4 其他为空</span><br><span class="line">nh_userid: &#39;&#39; 未登录为空 </span><br><span class="line">nh_authorization:&#x3D;&gt;&#123;</span><br><span class="line">    getNewAuthorization(user, password&#123;</span><br><span class="line">        return &quot;basic &quot; + user + &quot;_&quot; + MD5Utils.getMd5Passwd(password);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static void getHouseSecond4(boolean z, String str, int i, AsyncHttpResponseHandler asyncHttpResponseHandler) &#123;</span><br><span class="line">      if (z) &#123;</span><br><span class="line">          AsyncHttpManager.get(&quot;houseSnd?&quot; + str + &quot;&amp;PG&#x3D;&quot; + i + &quot;&amp;PS&#x3D;&quot; + ps + &quot;&amp;isScore&#x3D;0&quot; + BJ_VILLA, new BaseRequest(), asyncHttpResponseHandler);</span><br><span class="line">          return;</span><br><span class="line">      &#125;</span><br><span class="line">      AsyncHttpManager.get(&quot;houseSnd?&quot; + str + &quot;&amp;PG&#x3D;&quot; + i + &quot;&amp;PS&#x3D;&quot; + ps + &quot;&amp;isScore&#x3D;0&quot;, new BaseRequest(), asyncHttpResponseHandler);</span><br><span class="line">  &#125;</span><br><span class="line"> public static RequestHandle get(String str, BaseRequest baseRequest, AsyncHttpResponseHandler asyncHttpResponseHandler) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">          return get(str, ModelUtil.getRequestParamsFromObject(baseRequest), ModelUtil.                             (baseRequest), asyncHttpResponseHandler);</span><br><span class="line">      &#125; catch (Exception e) &#123;</span><br><span class="line">          e.printStackTrace();</span><br><span class="line">          return null;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;    </span><br><span class="line">  </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private static void addHeaderAuthorization(AsyncHttpClient asyncHttpClient, String str, String str2, Boolean bool) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        asyncHttpClient.removeHeader(&quot;Authorization&quot;);</span><br><span class="line">    &#125; catch (Exception unused) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    if (!bool.booleanValue()) &#123;</span><br><span class="line">        String authorization &#x3D; HttpClientConfig.getAuthorization(str2);</span><br><span class="line">        Log.e(&quot;Tag&quot;, &quot;Authorization:&quot; + authorization);</span><br><span class="line">        asyncHttpClient.addHeader(&quot;Authorization&quot;, authorization);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    String str3 &#x3D; &quot;Basic android_&quot; + MD5.hexdigest(&quot;android_40:0daceb80dd8a0a17&quot;);</span><br><span class="line">    asyncHttpClient.addHeader(&quot;Authorization&quot;, str3);</span><br><span class="line">    Log.e(&quot;tag&quot;, &quot;Authorization:&quot; + str3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数asyncHttpClient对象,str2是完整url的参数组合,getAuthorization(str2),如下:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">    HEADER_ID&#x3D;aos384e9f87   写死的</span><br><span class="line">    valueOf 根据当前时间生成的时间戳</span><br><span class="line">    </span><br><span class="line">**&#x2F;</span><br><span class="line">    public static String getAuthorization(String str) &#123;</span><br><span class="line">        String valueOf &#x3D; String.valueOf(System.currentTimeMillis());</span><br><span class="line">        StringBuffer stringBuffer &#x3D; new StringBuffer();</span><br><span class="line">        stringBuffer.append(&quot;Digest username&#x3D;&quot;);</span><br><span class="line">        stringBuffer.append(HEADER_ID);</span><br><span class="line">        stringBuffer.append(&quot;,cnonce&#x3D;&quot;);</span><br><span class="line">        stringBuffer.append(valueOf);</span><br><span class="line">        stringBuffer.append(&quot;,response&#x3D;&quot;);</span><br><span class="line">        StringBuffer stringBuffer2 &#x3D; new StringBuffer();</span><br><span class="line">        if (!TextUtils.isEmpty(str)) &#123;</span><br><span class="line">            stringBuffer2.append(str);</span><br><span class="line">        &#125;</span><br><span class="line">        stringBuffer2.append(HEADER_SECRET);</span><br><span class="line">        stringBuffer2.append(valueOf);</span><br><span class="line">        Log.e(&quot;Tag&quot;, &quot;response:&quot; + stringBuffer2.toString());</span><br><span class="line">        stringBuffer.append(com.sina.weibo.sdk.utils.MD5.hexdigest(stringBuffer2.toString()));</span><br><span class="line">        return stringBuffer.toString();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li>通过hook这个getAuthorization方法来获取参数和返回值:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">     public void handleLoadPackage(final RC_LoadPackage.LoadPackageParam lpparam) &#123;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;        addFloatingButtonForActivity(lpparam);</span><br><span class="line">&#x2F;&#x2F;        Log.i(tag, &quot;hook end&quot;);</span><br><span class="line">        &#x2F;&#x2F; 监听所有请求</span><br><span class="line">&#x2F;&#x2F;        SocketMonitor.setPacketEventObserver(new FileLogEventObserver(new File(RatelToolKit.whiteSdcardDirPath,&quot;socketMonitor&quot;)));</span><br><span class="line">&#x2F;&#x2F;        Log.i(TAG, &quot;hook start......&quot;);</span><br><span class="line">&#x2F;&#x2F;        RposedBridge.hookAllConstructors(URL.class, new RC_MethodHook() &#123;</span><br><span class="line">&#x2F;&#x2F;            @Override</span><br><span class="line">&#x2F;&#x2F;            protected void afterHookedMethod(MethodHookParam param) throws Throwable &#123;</span><br><span class="line">&#x2F;&#x2F;                Log.i(TAG, &quot;access url: &quot;+ param.thisObject);</span><br><span class="line">&#x2F;&#x2F;            &#125;</span><br><span class="line">&#x2F;&#x2F;        &#125;);</span><br><span class="line">&#x2F;&#x2F;        Log.i(TAG, &quot;hook end&quot;);</span><br><span class="line">        &#x2F;&#x2F;hook getAuthorization方法</span><br><span class="line">        &#x2F;&#x2F;com.jkrm.maitian.http.getAuthorization</span><br><span class="line">        Log.i(TAG, &quot;hook  findAndHookMethod start......&quot;);</span><br><span class="line">        RposedHelpers.findAndHookMethod(&quot;com.jkrm.maitian.http.HttpClientConfig&quot;, lpparam.classLoader,</span><br><span class="line">                &quot;getAuthorization&quot;, String.class, new RC_MethodHook() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    protected void afterHookedMethod(MethodHookParam param) throws Throwable &#123;</span><br><span class="line">                        super.afterHookedMethod(param);</span><br><span class="line">                        Log.i(TAG, &quot;getAuthorization param1&quot;+param.args[0]+&quot;result&quot;+param.getResult(),new Throwable());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        Log.i(TAG, &quot;hook findAndHookMethod end&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li>获取到的参数和返回值如下:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">param:</span><br><span class="line">appid&#x3D;aadc9abe17f54007b5cca7a2513cb8b1brokerid&#x3D;f9c4fb060aafd777channelid&#x3D;maitianwebdeviceid&#x3D;f9c4fb060aafd777from&#x3D;3housecode&#x3D;FY00811104model&#x3D;MI 8platform&#x3D;androidsystemversion&#x3D;10versioncode&#x3D;55versionname&#x3D;3.2.28ba449f29acf1592894282163</span><br><span class="line">appid&#x3D;aadc9abe17f54007b5cca7a2513cb8b1brokerid&#x3D;f9c4fb060aafd777channelid&#x3D;maitianwebdeviceid&#x3D;f9c4fb060aafd777from&#x3D;3housecode&#x3D;FY00677063model&#x3D;MI 8platform&#x3D;androidsystemversion&#x3D;10versioncode&#x3D;55versionname&#x3D;3.2.28ba449f29acf1592894282163</span><br><span class="line">result:Digest username&#x3D;aos384e9f87,cnonce&#x3D;1592894282163,response&#x3D;1cb6d3fe669c6dc7409bfe106d706577</span><br></pre></td></tr></table></figure></li>
+<li>由此得出getAuthorization验证的步骤以及原理是:<ol>
+<li>先组装result部分,username是写死的,cnonce是时间戳,response是根据param加上HEADER_SECRET加上时间戳进行MD5加密得到的</li>
+<li>从url中取得所有的param</li>
+<li>将param和时间戳以及secret组成新字符串进行MD5加密</li>
+<li>得到新的字符串赋值给response</li>
+<li>最后返回出去</li>
+<li>代码如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">API_URL &#x3D; &quot;https:&#x2F;&#x2F;app.maitian.cn&#x2F;service&#x2F;HouseSecond&#x2F;Detail?HouseCode&#x3D;&#123;&#125;&amp;memberId&#x3D;&amp;from&#x3D;3&amp;brokerid&#x3D;f9c4fb060aafd777&amp;appid&#x3D;aadc9abe17f54007b5cca7a2513cb8b1&amp;channelId&#x3D;maitianweb&amp;deviceId&#x3D;f9c4fb060aafd777&amp;platform&#x3D;android&amp;systemVersion&#x3D;10&amp;versionCode&#x3D;55&amp;versionName&#x3D;3.2.2&quot;</span><br><span class="line">LIST_URL &#x3D; &quot;https:&#x2F;&#x2F;app.maitian.cn&#x2F;service&#x2F;houseSnd?memberId&#x3D;&amp;memberEmobName&#x3D;&amp;touristId&#x3D;&amp;touristEmobName&#x3D;&amp;pushmsg&#x3D;1&amp;PG&#x3D;1&amp;PS&#x3D;20&amp;isScore&#x3D;0&amp;isAnalysis&#x3D;1&amp;appid&#x3D;aadc9abe17f54007b5cca7a2513cb8b1&amp;channelId&#x3D;maitianweb&amp;deviceId&#x3D;f9c4fb060aafd777&amp;platform&#x3D;android&amp;systemVersion&#x3D;10&amp;versionCode&#x3D;55&amp;versionName&#x3D;3.2.2&quot;</span><br><span class="line">HEADER_SECRET &#x3D; &quot;8ba449f29acf&quot;</span><br><span class="line">HEADER_ID &#x3D; &quot;aos384e9f87&quot;</span><br><span class="line"></span><br><span class="line">def get_param(url):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    1. 把url参数全部提取</span><br><span class="line">    2. 剔除空值的参数</span><br><span class="line">    3. 按照字典序排序</span><br><span class="line"></span><br><span class="line">    :param url: 完整URL</span><br><span class="line">    :return:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    url_param &#x3D; url.split(&quot;?&quot;)[1]</span><br><span class="line">    param_list &#x3D; list()</span><br><span class="line">    for param_dict in url_param.split(&quot;&amp;&quot;):</span><br><span class="line">        key &#x3D; param_dict.split(&quot;&#x3D;&quot;)[0]</span><br><span class="line">        value &#x3D; param_dict.split(&quot;&#x3D;&quot;)[1]</span><br><span class="line">        if value &#x3D;&#x3D; &quot;&quot; or value is None:</span><br><span class="line">            continue</span><br><span class="line">        param_list.append(key.lower()+&quot;&#x3D;&quot;+value)</span><br><span class="line"></span><br><span class="line">    return str(sorted(param_list, key&#x3D;str.lower)).replace(&quot;,&quot;, &quot;&quot;).replace(&quot;]&quot;, &quot;&quot;).replace(&quot;[&quot;, &quot;&quot;).replace(&quot;&#39;&quot;, &quot;&quot;).replace(&quot; &quot;, &quot;&quot;)</span><br><span class="line"></span><br><span class="line">    def getAuthorization(url):</span><br><span class="line">    valueof &#x3D; int(time.time()*1000)</span><br><span class="line">    param &#x3D; get_param(url).replace(&quot;+&quot;, &quot; &quot;)</span><br><span class="line">    print(&quot;param:&quot;, param)</span><br><span class="line">    resp_value &#x3D; param+HEADER_SECRET+str(valueof)</span><br><span class="line">    print(&quot;resp:&quot;, resp_value)</span><br><span class="line">    resp_str &#x3D; &quot;Digest username&#x3D;&#123;&#125;,cnonce&#x3D;&#123;&#125;,response&#x3D;&#123;&#125;&quot;.format(HEADER_ID, valueof, hashlib.md5(resp_value.encode()).hexdigest())</span><br><span class="line">    return resp_str</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">  authorizetion &#x3D; getAuthorization(LIST_URL)</span><br><span class="line">  print(authorizetion)</span><br><span class="line">  headers &#x3D; &#123;</span><br><span class="line">      &quot;Host&quot;: &quot;app.maitian.cn&quot;,</span><br><span class="line">      &quot;Authorization&quot;: authorizetion,</span><br><span class="line">      &quot;nh_citycode&quot;: &quot;&quot;,</span><br><span class="line">      &quot;nh_userid&quot;: &quot;&quot;,</span><br><span class="line">      &quot;User-Agent&quot;: &quot;Android&quot;,</span><br><span class="line">      &quot;Connection&quot;: &quot;Keep-Alive&quot;,</span><br><span class="line">      &quot;Accept-Encoding&quot;: &quot;gzip,deflate,sdch&quot;,</span><br><span class="line">      &quot;nh_authorization&quot;: &quot;&quot;,</span><br><span class="line">      &quot;token&quot;: &quot;0befe3865bde6ba7bf0a83e90fb2ae12&quot;,</span><br><span class="line">  &#125;</span><br><span class="line">  res &#x3D; requests.get(url&#x3D;LIST_URL, headers&#x3D;headers)</span><br><span class="line">  print(res.text.encode(&#39;unicode_escape&#39;).decode(&#39;unicode_escape&#39;))</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>列表页URL：其中pg是可以变化的,表示当前URL请求的页码数,X和Y表示经纬度,可以不要,model也可以不要<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;app.maitian.cn&#x2F;service&#x2F;houseSnd?memberId&#x3D;&amp;memberEmobName&#x3D;&amp;touristId&#x3D;&amp;touristEmobName&#x3D;&amp;pushmsg&#x3D;1&amp;PG&#x3D;2&amp;PS&#x3D;20&amp;isScore&#x3D;0&amp;X&#x3D;113.959601&amp;Y&#x3D;22.547524&amp;isAnalysis&#x3D;1&amp;appid&#x3D;aadc9abe17f54007b5cca7a2513cb8b1&amp;channelId&#x3D;maitianweb&amp;deviceId&#x3D;f9c4fb060aafd777&amp;model&#x3D;MI+8&amp;platform&#x3D;android&amp;systemVersion&#x3D;10&amp;versionCode&#x3D;55&amp;versionName&#x3D;3.2.2</span><br></pre></td></tr></table></figure></li>
+<li>详情页URL: HouseCode从列表页中区,表示房源编号<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;app.maitian.cn&#x2F;service&#x2F;HouseSecond&#x2F;Detail?HouseCode&#x3D;&#123;&#125;&amp;memberId&#x3D;&amp;from&#x3D;3&amp;brokerid&#x3D;f9c4fb060aafd777&amp;appid&#x3D;aadc9abe17f54007b5cca7a2513cb8b1&amp;channelId&#x3D;maitianweb&amp;deviceId&#x3D;f9c4fb060aafd777&amp;platform&#x3D;android&amp;systemVersion&#x3D;10&amp;versionCode&#x3D;55&amp;versionName&#x3D;3.2.2</span><br></pre></td></tr></table></figure></li>
+<li>小区详情页: 直接通过获取所有区域编号的方式直接获取小区详情页,不通过小区列表页的方式,参数是小区的id编码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;app.maitian.cn&#x2F;service&#x2F;Garden&#x2F;Detail?&#123;&#125;&amp;from&#x3D;3&amp;PG&#x3D;1&amp;PS&#x3D;20&amp;appid&#x3D;aadc9abe17f54007b5cca7a2513cb8b1&amp;channelId&#x3D;maitianweb&amp;deviceId&#x3D;f9c4fb060aafd777&amp;platform&#x3D;android&amp;systemVersion&#x3D;10&amp;versionCode&#x3D;55&amp;versionName&#x3D;3.2.2</span><br></pre></td></tr></table></figure>
+<h3 id="使用总结"><a href="#使用总结" class="headerlink" title="使用总结"></a>使用总结</h3></li>
+<li>下载好ratel manager,上传带感染apk,感染apk完成之后pc端留一份,另一份装到手机上</li>
+<li>打开ratel manager,找到感染应用选项,安装在手机上的apk会自动被扫描进去</li>
+<li>下载<a target="_blank" rel="noopener" href="https://github.com/skylot/jadx">jadx</a>,使用jadx打开apk,导出gradle工程</li>
+<li>下载Android Studio,使用AS打开刚刚导出的gradle工程(主要作用是分析源码)</li>
+<li>下载ratel-demo,推荐直接使用git, <code>git clone --recursivegit@git.virjar.com:ratel/ratel-demo.git</code>下载即可</li>
+<li>使用AS打开此项目,生成对应的插件模块,编写自定义功能<ol>
+<li>生成模块命令:<code>./template.sh  -m crack-wechat -a path </code> -m表示要创建的插件名称,-a 对应的是已破解感染好的apk的路径</li>
+<li>生成要注意的事项,也可以说是AS的注意事项,sdk版本不对应会产生错误,proxy setting错误会导致错误,proxy setting选择no proxy选项,我们使用阿里云的镜像云,connection的错误一般都是proxy的问题,可以检查一下是否删除干净,如果设置了一次,AS会把选项内容写入到~/.gradle/gradle.properties文件中,我们必须手动删除有关proxy选项,</li>
+<li>生成成功之后在HookEntry写插件功能</li>
+<li>启动apk,会根据功能做出相关的操作</li>
+<li>根据查看日志和查看源代码的形式分析出所需要的功能</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/04/ratel%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckkqo8uef00085cqk545m1ypu" data-title="ratel的使用" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-抓取小程序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/04/%E6%8A%93%E5%8F%96%E5%B0%8F%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2021-02-04T09:10:57.000Z" itemprop="datePublished">2021-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/02/04/%E6%8A%93%E5%8F%96%E5%B0%8F%E7%A8%8B%E5%BA%8F/">抓取小程序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是Whistle"><a href="#什么是Whistle" class="headerlink" title="什么是Whistle"></a>什么是Whistle</h2><h4 id="简单的说whistle-是一个跨平台的抓包与-web-debug-工具，用来抓包-数据"><a href="#简单的说whistle-是一个跨平台的抓包与-web-debug-工具，用来抓包-数据" class="headerlink" title="简单的说whistle 是一个跨平台的抓包与 web debug 工具，用来抓包(数据)"></a>简单的说whistle 是一个跨平台的抓包与 web debug 工具，用来抓包(数据)</h4><h2 id="安装Whistle"><a href="#安装Whistle" class="headerlink" title="安装Whistle"></a>安装Whistle</h2><ul>
+<li>1.安装<a target="_blank" rel="noopener" href="https://nodejs.org/">node</a>,默认安装即可啦</li>
+<li>2.检查一下是否安装成功 node -v</li>
+<li>3.终端输入npm install -g whistle</li>
+<li>4.启动whistle: w2 start</li>
+<li>5.重启whistle: w2 restart</li>
+<li>6.停止whistle: w2 stop</li>
+<li>7.指定端口: w2 start -p xxx(端口号)  //如果不指定默认8899<br>###使用whistle</li>
+<li>1.启动whistle之后在地址栏输入你的ip+端口号即可</li>
+<li>2.手机和电脑必须同一个网络，手机设置wifi的http代理，服务器地址改为电脑的IP地址，端口设置为whistle启动时的端口<br>###https的抓包</li>
+<li>1.在whistle界面点击HTTPS-&gt;点击Download RootCA,记得把（Capture TUNNEL CONNECTs）打钩，下载之后安装在本地计算机，选择第二个选项(将所有的证书放在下列存储)-&gt;浏览-&gt;受信任的根证书颁发机构-&gt;确定</li>
+<li>2.手机浏览器地址栏输入rootca.pro，然后下载好证书并且安装</li>
+<li>3.打开微信小程序(目标)，我随便搜了一个（注意，微信版本现在7.0以上似乎抓取不到https）<br><img src="/img/%E6%8A%93%E5%8F%96%E5%B0%8F%E7%A8%8B%E5%BA%8F/cat.png" alt="image.png"></li>
+<li>4.完工</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/04/%E6%8A%93%E5%8F%96%E5%B0%8F%E7%A8%8B%E5%BA%8F/" data-id="ckkqo8ueq000p5cqk09ve1fmo" data-title="抓取小程序" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-title" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/04/title/" class="article-date">
+  <time class="dt-published" datetime="2021-02-04T08:01:00.000Z" itemprop="datePublished">2021-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/02/04/title/">换IP之坑</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="起因客户换了ip和路由器，导致系统需要重新配置"><a href="#起因客户换了ip和路由器，导致系统需要重新配置" class="headerlink" title="起因客户换了ip和路由器，导致系统需要重新配置"></a>起因客户换了ip和路由器，导致系统需要重新配置</h4><ul>
+<li>首先是app换ip,重新打包</li>
+<li>其次是后端换ip,重新rebuild</li>
+<li>最后是前端换ip,rebuild</li>
+</ul>
+<h5 id="我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not-found-image！我的天，找不到镜像-进入服务器试试"><a href="#我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not-found-image！我的天，找不到镜像-进入服务器试试" class="headerlink" title="我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not found image！我的天，找不到镜像,进入服务器试试"></a>我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not found image！我的天，找不到镜像,进入服务器试试</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker search zookeeper</span><br><span class="line">Error response from daemon: Get https:&#x2F;&#x2F;index.docker.io&#x2F;v1&#x2F;search?q&#x3D;zookeeper&amp;n&#x3D;25: dial tcp: lookup 221.138.164.6</span><br></pre></td></tr></table></figure>
+<h4 id="看起来是网络问题，看看网络"><a href="#看起来是网络问题，看看网络" class="headerlink" title="看起来是网络问题，看看网络"></a>看起来是网络问题，看看网络</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;etc&#x2F;resolv.conf</span><br><span class="line"># Generated by NetworkManager</span><br><span class="line">nameserver 221.176.88.95</span><br><span class="line">nameserver 221.138.164.6</span><br></pre></td></tr></table></figure>
+<h5 id="尝试改了然后重启网卡-service-restart-network-再看-etc-resolv-conf，发现和没改之前一样，奇了怪了-随后发现是要更改-etc-sysconfig-network-scripts-ifcfg-eth0-修改dns就成功了。"><a href="#尝试改了然后重启网卡-service-restart-network-再看-etc-resolv-conf，发现和没改之前一样，奇了怪了-随后发现是要更改-etc-sysconfig-network-scripts-ifcfg-eth0-修改dns就成功了。" class="headerlink" title="尝试改了然后重启网卡 service restart network,再看/etc/resolv.conf，发现和没改之前一样，奇了怪了,随后发现是要更改 /etc/sysconfig/network-scripts/ifcfg-eth0,修改dns就成功了。"></a>尝试改了然后重启网卡 service restart network,再看/etc/resolv.conf，发现和没改之前一样，奇了怪了,随后发现是要更改 /etc/sysconfig/network-scripts/ifcfg-eth0,修改dns就成功了。</h5><h5 id="改好之后重启-开放端口！成功解决"><a href="#改好之后重启-开放端口！成功解决" class="headerlink" title="改好之后重启 开放端口！成功解决"></a>改好之后重启 开放端口！成功解决</h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/04/title/" data-id="ckkqo8uep000o5cqk4dcqe6ln" data-title="换IP之坑" class="article-share-link">Share</a>
+      
+      
+      
     </footer>
   </div>
   
@@ -882,6 +1074,10 @@
         
           <li>
             <a href="/2021/02/04/Flex%E7%9A%84%E5%B8%83%E5%B1%80%E4%BD%BF%E7%94%A8/">Flex的布局使用</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/04/ratel%E7%9A%84%E4%BD%BF%E7%94%A8/">ratel的使用</a>
           </li>
         
       </ul>
