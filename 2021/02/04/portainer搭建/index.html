@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Archives | Hexo</title>
+  <title>portainer搭建 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="假设有了docker 环境 首先拉取镜像 1docker pull docker.io&#x2F;portainer&#x2F;portainer 开启docker的远程管理12vim &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;docker.serviceExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;dockerd -H uni">
+<meta property="og:type" content="article">
+<meta property="og:title" content="portainer搭建">
+<meta property="og:url" content="http://example.com/2021/02/04/portainer%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="假设有了docker 环境 首先拉取镜像 1docker pull docker.io&#x2F;portainer&#x2F;portainer 开启docker的远程管理12vim &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;docker.serviceExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;dockerd -H uni">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-02-04T09:31:31.000Z">
+<meta property="article:modified_time" content="2021-02-04T09:33:29.298Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -69,96 +73,60 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/02/04/portainer%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-  <time class="dt-published" datetime="2021-02-04T09:31:31.000Z" itemprop="datePublished">Feb 4</time>
+        <section id="main"><article id="post-portainer搭建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/04/portainer%E6%90%AD%E5%BB%BA/" class="article-date">
+  <time class="dt-published" datetime="2021-02-04T09:31:31.000Z" itemprop="datePublished">2021-02-04</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/04/portainer%E6%90%AD%E5%BB%BA/">portainer搭建</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      portainer搭建
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/02/04/py%E6%93%8D%E4%BD%9CMongoDB/" class="archive-article-date">
-  <time class="dt-published" datetime="2021-02-04T09:28:43.000Z" itemprop="datePublished">Feb 4</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/04/py%E6%93%8D%E4%BD%9CMongoDB/">py操作MongoDB</a>
-    </h1>
-  
+        <h3 id="假设有了docker-环境"><a href="#假设有了docker-环境" class="headerlink" title="假设有了docker 环境"></a>假设有了docker 环境</h3><ul>
+<li>首先拉取镜像 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull docker.io&#x2F;portainer&#x2F;portainer</span><br></pre></td></tr></table></figure></li>
+<li>开启docker的远程管理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;lib&#x2F;systemd&#x2F;system&#x2F;docker.service</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;dockerd -H unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock -H tcp:&#x2F;&#x2F;0.0.0.0:2375</span><br></pre></td></tr></table></figure></li>
+<li>重新加载配置重启docker<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload </span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure></li>
+<li>检查防火墙状态-关闭防火墙<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure></li>
+<li>启动容器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 14001:9000 --restart&#x3D;always -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock --name prtainer portainer&#x2F;portainer</span><br></pre></td></tr></table></figure></li>
+<li>访问<a target="_blank" rel="noopener" href="http://ip:14001/%E7%99%BB%E5%BD%95">http://ip:14001/登录</a></li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/02/04/Mongo%E4%B8%8EMysql%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" class="archive-article-date">
-  <time class="dt-published" datetime="2021-02-04T09:26:37.000Z" itemprop="datePublished">Feb 4</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/04/Mongo%E4%B8%8EMysql%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/">Mongo与Mysql的一些事</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/02/04/Flex%E7%9A%84%E5%B8%83%E5%B1%80%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  <time class="dt-published" datetime="2021-02-04T09:21:28.000Z" itemprop="datePublished">Feb 4</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/04/portainer%E6%90%AD%E5%BB%BA/" data-id="ckkqnz3nt00063wqk1r4q7343" data-title="portainer搭建" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/04/Flex%E7%9A%84%E5%B8%83%E5%B1%80%E4%BD%BF%E7%94%A8/">Flex的布局使用</a>
-    </h1>
-  
-
-    </header>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/02/04/py%E6%93%8D%E4%BD%9CMongoDB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">py操作MongoDB</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
