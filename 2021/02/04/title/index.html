@@ -1,99 +1,192 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>换IP之坑 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta name="description" content="起因客户换了ip和路由器，导致系统需要重新配置 首先是app换ip,重新打包 其次是后端换ip,重新rebuild 最后是前端换ip,rebuild  我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not found image！我的天，找不到镜">
 <meta property="og:type" content="article">
 <meta property="og:title" content="换IP之坑">
 <meta property="og:url" content="http://example.com/2021/02/04/title/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="威猛的小老虎">
 <meta property="og:description" content="起因客户换了ip和路由器，导致系统需要重新配置 首先是app换ip,重新打包 其次是后端换ip,重新rebuild 最后是前端换ip,rebuild  我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not found image！我的天，找不到镜">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-04T08:01:00.000Z">
 <meta property="article:modified_time" content="2021-02-04T09:42:31.700Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="changan">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<link rel="canonical" href="http://example.com/2021/02/04/title/">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
-<meta name="generator" content="Hexo 5.3.0"></head>
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
+  <title>换IP之坑 | 威猛的小老虎</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
-</header>
 
-      <div class="outer">
-        <section id="main"><article id="post-title" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/02/04/title/" class="article-date">
-  <time class="dt-published" datetime="2021-02-04T08:01:00.000Z" itemprop="datePublished">2021-02-04</time>
-</a>
-    
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">威猛的小老虎</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      换IP之坑
-    </h1>
-  
 
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/04/title/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://59.50.1.5:14080/ftpuser/ygl/null/null20210201/b1872b49-de2a-4eab-be52-09d0eb263c51.png">
+      <meta itemprop="name" content="changan">
+      <meta itemprop="description" content="欢迎您的到来！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="威猛的小老虎">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          换IP之坑
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-04 16:01:00 / 修改时间：17:42:31" itemprop="dateCreated datePublished" datetime="2021-02-04T16:01:00+08:00">2021-02-04</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="e-content article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <h4 id="起因客户换了ip和路由器，导致系统需要重新配置"><a href="#起因客户换了ip和路由器，导致系统需要重新配置" class="headerlink" title="起因客户换了ip和路由器，导致系统需要重新配置"></a>起因客户换了ip和路由器，导致系统需要重新配置</h4><ul>
 <li>首先是app换ip,重新打包</li>
@@ -103,143 +196,189 @@
 <h5 id="我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not-found-image！我的天，找不到镜像-进入服务器试试"><a href="#我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not-found-image！我的天，找不到镜像-进入服务器试试" class="headerlink" title="我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not found image！我的天，找不到镜像,进入服务器试试"></a>我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not found image！我的天，找不到镜像,进入服务器试试</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker search zookeeper</span><br><span class="line">Error response from daemon: Get https:&#x2F;&#x2F;index.docker.io&#x2F;v1&#x2F;search?q&#x3D;zookeeper&amp;n&#x3D;25: dial tcp: lookup 221.138.164.6</span><br></pre></td></tr></table></figure>
 <h4 id="看起来是网络问题，看看网络"><a href="#看起来是网络问题，看看网络" class="headerlink" title="看起来是网络问题，看看网络"></a>看起来是网络问题，看看网络</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;etc&#x2F;resolv.conf</span><br><span class="line"># Generated by NetworkManager</span><br><span class="line">nameserver 221.176.88.95</span><br><span class="line">nameserver 221.138.164.6</span><br></pre></td></tr></table></figure>
 <h5 id="尝试改了然后重启网卡-service-restart-network-再看-etc-resolv-conf，发现和没改之前一样，奇了怪了-随后发现是要更改-etc-sysconfig-network-scripts-ifcfg-eth0-修改dns就成功了。"><a href="#尝试改了然后重启网卡-service-restart-network-再看-etc-resolv-conf，发现和没改之前一样，奇了怪了-随后发现是要更改-etc-sysconfig-network-scripts-ifcfg-eth0-修改dns就成功了。" class="headerlink" title="尝试改了然后重启网卡 service restart network,再看/etc/resolv.conf，发现和没改之前一样，奇了怪了,随后发现是要更改 /etc/sysconfig/network-scripts/ifcfg-eth0,修改dns就成功了。"></a>尝试改了然后重启网卡 service restart network,再看/etc/resolv.conf，发现和没改之前一样，奇了怪了,随后发现是要更改 /etc/sysconfig/network-scripts/ifcfg-eth0,修改dns就成功了。</h5><h5 id="改好之后重启-开放端口！成功解决"><a href="#改好之后重启-开放端口！成功解决" class="headerlink" title="改好之后重启 开放端口！成功解决"></a>改好之后重启 开放端口！成功解决</h5>
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/04/title/" data-id="ckkqo8uep000o5cqk4dcqe6ln" data-title="换IP之坑" class="article-share-link">Share</a>
-      
-      
-      
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/04/%E6%8A%93%E5%8F%96%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="next" title="抓取小程序">
+      抓取小程序 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0%E5%AE%A2%E6%88%B7%E6%8D%A2%E4%BA%86ip%E5%92%8C%E8%B7%AF%E7%94%B1%E5%99%A8%EF%BC%8C%E5%AF%BC%E8%87%B4%E7%B3%BB%E7%BB%9F%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">起因客户换了ip和路由器，导致系统需要重新配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%88%91%E4%BB%A5%E4%B8%BA%E8%BF%99%E4%B8%89%E6%AD%A5%E5%B0%B1%E5%AE%8C%E4%BA%8B%E4%BA%86%EF%BC%8C%E6%B2%A1%E6%83%B3%E5%88%B0service%E6%9C%8D%E5%8A%A1%E8%B7%91%E4%B8%8D%E8%B5%B7%E6%9D%A5%EF%BC%8C%E7%9C%8B%E4%BA%86%E4%B8%80%E4%B8%8Blog%EF%BC%8C%E5%8F%91%E7%8E%B0%E6%98%AFzookpper%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%B0%B1%E6%83%B3%E7%9D%80%E6%8A%8Azookpper%E5%B9%B2%E6%8E%89%EF%BC%8C%E7%84%B6%E5%90%8E%E5%8F%91%E7%8E%B0%E5%88%A0%E9%99%A4%E4%BA%86%E9%95%9C%E5%83%8F%E5%92%8C%E5%AE%B9%E5%99%A8%EF%BC%8Crebuild%E5%A4%B1%E8%B4%A5%EF%BC%81%E5%A5%BD%E5%A5%87%E5%8E%BB%E7%9C%8B%E4%BA%86%E4%B8%80%E4%B8%8Blog%EF%BC%8Cnot-found-image%EF%BC%81%E6%88%91%E7%9A%84%E5%A4%A9%EF%BC%8C%E6%89%BE%E4%B8%8D%E5%88%B0%E9%95%9C%E5%83%8F-%E8%BF%9B%E5%85%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%95%E8%AF%95"><span class="nav-number">1.1.</span> <span class="nav-text">我以为这三步就完事了，没想到service服务跑不起来，看了一下log，发现是zookpper的问题，就想着把zookpper干掉，然后发现删除了镜像和容器，rebuild失败！好奇去看了一下log，not found image！我的天，找不到镜像,进入服务器试试</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9C%8B%E8%B5%B7%E6%9D%A5%E6%98%AF%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98%EF%BC%8C%E7%9C%8B%E7%9C%8B%E7%BD%91%E7%BB%9C"><span class="nav-number">2.</span> <span class="nav-text">看起来是网络问题，看看网络</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E6%94%B9%E4%BA%86%E7%84%B6%E5%90%8E%E9%87%8D%E5%90%AF%E7%BD%91%E5%8D%A1-service-restart-network-%E5%86%8D%E7%9C%8B-etc-resolv-conf%EF%BC%8C%E5%8F%91%E7%8E%B0%E5%92%8C%E6%B2%A1%E6%94%B9%E4%B9%8B%E5%89%8D%E4%B8%80%E6%A0%B7%EF%BC%8C%E5%A5%87%E4%BA%86%E6%80%AA%E4%BA%86-%E9%9A%8F%E5%90%8E%E5%8F%91%E7%8E%B0%E6%98%AF%E8%A6%81%E6%9B%B4%E6%94%B9-etc-sysconfig-network-scripts-ifcfg-eth0-%E4%BF%AE%E6%94%B9dns%E5%B0%B1%E6%88%90%E5%8A%9F%E4%BA%86%E3%80%82"><span class="nav-number">2.1.</span> <span class="nav-text">尝试改了然后重启网卡 service restart network,再看&#x2F;etc&#x2F;resolv.conf，发现和没改之前一样，奇了怪了,随后发现是要更改 &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth0,修改dns就成功了。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%94%B9%E5%A5%BD%E4%B9%8B%E5%90%8E%E9%87%8D%E5%90%AF-%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3%EF%BC%81%E6%88%90%E5%8A%9F%E8%A7%A3%E5%86%B3"><span class="nav-number">2.2.</span> <span class="nav-text">改好之后重启 开放端口！成功解决</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="changan"
+      src="http://59.50.1.5:14080/ftpuser/ygl/null/null20210201/b1872b49-de2a-4eab-be52-09d0eb263c51.png">
+  <p class="site-author-name" itemprop="name">changan</p>
+  <div class="site-description" itemprop="description">欢迎您的到来！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">changan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2021/02/04/%E6%8A%93%E5%8F%96%E5%B0%8F%E7%A8%8B%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          抓取小程序
-        
-      </div>
-    </a>
-  
-  
-</nav>
 
   
-</article>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flex/" rel="tag">Flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/py/" rel="tag">py</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-    </div>
-  </div>
+<script src="/js/schemes/pisces.js"></script>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Flex/" style="font-size: 10px;">Flex</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/py/" style="font-size: 10px;">py</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 20px;">数据库</a>
-    </div>
-  </div>
+<script src="/js/next-boot.js"></script>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/02/04/portainer%E6%90%AD%E5%BB%BA/">portainer搭建</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/04/py%E6%93%8D%E4%BD%9CMongoDB/">py操作MongoDB</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/04/Mongo%E4%B8%8EMysql%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/">Mongo与Mysql的一些事</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/04/Flex%E7%9A%84%E5%B8%83%E5%B1%80%E4%BD%BF%E7%94%A8/">Flex的布局使用</a>
-          </li>
-        
-          <li>
-            <a href="/2021/02/04/ratel%E7%9A%84%E4%BD%BF%E7%94%A8/">ratel的使用</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
 </body>
 </html>
